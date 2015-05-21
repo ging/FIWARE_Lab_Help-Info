@@ -13,9 +13,9 @@ get_header();
 $main_column_size = bootstrapBasicGetMainColumnSize();
 ?>
 <?php get_sidebar('left'); ?> 
-				<div class="col-md-<?php echo $main_column_size; ?> content-area" id="main-column">
-					<main id="main" class="site-main" role="main">
-						
+        <div class="col-md-<?php echo $main_column_size; ?> content-area" id="main-column">
+          <main id="main" class="site-main" role="main">
+            
 
         <div class="tabbable">
           <header>
@@ -46,15 +46,15 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
               <ul class="description">
                 <div class="tabbable"> <!-- Only required for left/right tabs -->
                   <ul class="nav nav-pills nav-justified" role="tablist" id="myTab">
-                    <li role="presentation" class="active"><a href="#blueprints-t" aria-controls="home" role="tab" data-toggle="tab">Blueprints</a></li>
-                    <li role="presentation"><a href="#instances-t" aria-controls="profile" role="tab" data-toggle="tab">Instances</a></li>
-                    <li role="presentation"><a href="#object-storage-t" aria-controls="messages" role="tab" data-toggle="tab">Object Storage</a></li>
+                    <li role="presentation" class="btn btn-default active"><a href="#blueprints-t" aria-controls="home" role="tab" data-toggle="tab">Blueprints</a></li>
+                    <li role="presentation" class="btn btn-default"><a href="#instances-t" aria-controls="profile" role="tab" data-toggle="tab">Instances</a></li>
+                    <li role="presentation" class="btn btn-default"><a href="#object-storage-t" aria-controls="messages" role="tab" data-toggle="tab">Object Storage</a></li>
                   </ul>
 
                   <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="blueprints-t">
                       <p>Blueprint Templates let you quickly create a template from which to build your application.</p>
-                                        <p>You can specify the software you need in the Tier Templates and easily deploy all the instances with one click.</p>
+                      <p>You can specify the software you need in the Tier Templates and easily deploy all the instances with one click.</p>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="instances-t">
                       <p>Use the Cloud section to create virtual servers for your applications in FI-WARE.</p>
@@ -120,26 +120,26 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
       
         <div id="blog">
 
-						<?php if (have_posts()) { ?> 
-						<?php 
-						// start the loop
-						while (have_posts()) {
-							the_post();
-							
-							/* Include the Post-Format-specific template for the content.
-							* If you want to override this in a child theme, then include a file
-							* called content-___.php (where ___ is the Post Format name) and that will be used instead.
-							*/
-							get_template_part('content', get_post_format());
-						}// end while
-						
-						bootstrapBasicPagination();
-						?> 
-						<?php } else { ?> 
-						<?php get_template_part('no-results', 'index'); ?>
-						<?php } // endif; ?> 
-						</div>
-					</main>
-				</div>
+            <?php if (have_posts()) { ?> 
+            <?php 
+            // start the loop
+            while (have_posts()) {
+              the_post();
+              
+              /* Include the Post-Format-specific template for the content.
+              * If you want to override this in a child theme, then include a file
+              * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+              */
+              get_template_part('content', get_post_format());
+            }// end while
+            
+            bootstrapBasicPagination();
+            ?> 
+            <?php } else { ?> 
+            <?php get_template_part('no-results', 'index'); ?>
+            <?php } // endif; ?> 
+            </div>
+          </main>
+        </div>
 <?php get_sidebar('right'); ?> 
 <?php get_footer(); ?> 
