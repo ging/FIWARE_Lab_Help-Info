@@ -10,38 +10,41 @@
 <!--[if IE 7]>     <html class="no-js lt-ie9 lt-ie8" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 8]>     <html class="no-js lt-ie9" <?php language_attributes(); ?>> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
-  <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title><?php wp_title('|', true, 'right'); ?></title>
-    <meta name="viewport" content="width=device-width">
+	<head>
+		<meta charset="<?php bloginfo('charset'); ?>">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title><?php wp_title('|', true, 'right'); ?></title>
+		<meta name="viewport" content="width=device-width">
 
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
-    <!--wordpress head-->
-    <?php wp_head(); ?>
+		<!--wordpress head-->
+		<?php wp_head(); ?>
+
+
     <script>
       var confirm_help_box = function () {
-      var r = confirm("The communications sent to the FIWARE Lab support list are public and they generate public tickets. Please avoid sending private info unless you are happy to see it publicly available.");
-        if (r == true) {
-          window.location = "mailto:fiware-lab-help@lists.fi-ware.org?Subject=FI-Lab Assistance";
+        var r = confirm("The communications sent to the FIWARE Lab support list are public and they generate public tickets. Please avoid sending private info unless you are happy to see it publicly available.");
+          if (r == true) {
+              window.location = "mailto:fiware-lab-help@lists.fi-ware.org?Subject=FI-Lab Assistance";
         } 
       }
     </script>
-  </head>
 
-
-  <body <?php body_class(); ?>>
-    <!--[if lt IE 8]>
-      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
+    <script src="http://help.lab.fi-ware.org/wp-content/themes/wordpress-bootstrap/js/cookies_policy.js"></script>
     
-    
-    
-    
-    
-    <header class="navbar navbar-default navbar-fixed-top">
+	</head>
+	<body <?php body_class(); ?>>
+		<!--[if lt IE 8]>
+			<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+		<![endif]-->
+		
+		
+		
+		
+		
+		<header class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -93,6 +96,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </header>
-      
-      
-      <div id="content" class="container-fluid wrap">
+			
+			
+			<div id="content" class="container-fluid wrap">

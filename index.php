@@ -13,9 +13,9 @@ get_header();
 $main_column_size = bootstrapBasicGetMainColumnSize();
 ?>
 <?php get_sidebar('left'); ?> 
-        <div class="col-md-<?php echo $main_column_size; ?> content-area" id="main-column">
-          <main id="main" class="site-main" role="main">
-            
+				<div class="col-md-<?php echo $main_column_size; ?> content-area" id="main-column">
+					<main id="main" class="site-main" role="main">
+						
 
         <div class="tabbable">
           <header>
@@ -39,7 +39,7 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
               
                 <iframe id="instances-video" src="//www.youtube.com/embed/mb7CdMnZh7Q" frameborder="0" allowfullscreen></iframe>
                 
-                <iframe id="o-storage-video" src="//www.youtube.com/embed/M0plEExFQgI" frameborder="0" allowfullscreen></iframe>
+                <iframe id="o-storage-video" src="//www.youtube.com/embed/PR2gnSJLKvc" frameborder="0" allowfullscreen></iframe>
              
               </div>
 
@@ -120,26 +120,49 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
       
         <div id="blog">
 
-            <?php if (have_posts()) { ?> 
-            <?php 
-            // start the loop
-            while (have_posts()) {
-              the_post();
-              
-              /* Include the Post-Format-specific template for the content.
-              * If you want to override this in a child theme, then include a file
-              * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-              */
-              get_template_part('content', get_post_format());
-            }// end while
-            
-            bootstrapBasicPagination();
-            ?> 
-            <?php } else { ?> 
-            <?php get_template_part('no-results', 'index'); ?>
-            <?php } // endif; ?> 
-            </div>
-          </main>
-        </div>
+						<?php if (have_posts()) { ?> 
+						<?php 
+						// start the loop
+						while (have_posts()) {
+							the_post();
+							
+							/* Include the Post-Format-specific template for the content.
+							* If you want to override this in a child theme, then include a file
+							* called content-___.php (where ___ is the Post Format name) and that will be used instead.
+							*/
+							get_template_part('content', get_post_format());
+						}// end while
+						
+						bootstrapBasicPagination();
+						?> 
+						<?php } else { ?> 
+						<?php get_template_part('no-results', 'index'); ?>
+						<?php } // endif; ?> 
+						</div>
+					</main>
+				</div>
 <?php get_sidebar('right'); ?> 
+
+
+<div id="my_mo_modal" style="top: 20%;" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+                <h3>Important info</h3>
+              </div>
+              <div class="modal-body">
+<p>Dear User, <br><br>
+By clicking the “I accept” link below, you declare to accept the new defined policies.  Otherwise, you can still work with your account but note that it will be removed by the defined deadline and the FIWARE Lab providers will not be responsible for creating a copy of the data you stored on the FIWARE Lab.<br><br>
+<a href="http://terms.lab.fiware.org/accept"  target="_blank">I Accept</a><br><br>
+Thanks</p>
+              </div>
+              <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-blue">Continue</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
 <?php get_footer(); ?> 
