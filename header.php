@@ -32,7 +32,7 @@
       }
     </script>
 
-    <script src="http://help.lab.fi-ware.org/wp-content/themes/wordpress-bootstrap/js/cookies_policy.js"></script>
+    <script src="wp-content/themes/bootstrap-basic/js/vendor/cookies_policy.js"></script>
     
 	</head>
 	<body <?php body_class(); ?>>

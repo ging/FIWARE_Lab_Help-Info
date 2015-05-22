@@ -10,7 +10,7 @@ function createDiv(){
     var bodytag = document.getElementsByTagName('body')[0];
     var div = document.createElement('div');
     div.setAttribute('id','cookie-law');
-    div.innerHTML = '<p>We use first and third-party’s cookies to improve your experience and our services,' +
+    div.innerHTML = '<p>We use first and third-party’s cookies to improve your experience and our services, ' +
                     'identifying your Internet browsing preferences on our website. ' +
                     'If you keep browsing, you accept its use. You can get more information on our ' + 
                     '<a href="http://forge.fi-ware.org/plugins/mediawiki/wiki/fiware/index.php/Cookies_Policy_FIWARE_Lab" target="_blank">Cookie Policy. ' + 
@@ -45,7 +45,6 @@ function checkCookie(name) {
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
-    $('#my_mo_modal').modal();
 }
  
 function eraseCookie(name) {
@@ -53,9 +52,11 @@ function eraseCookie(name) {
 }
  
 window.onload = function(){
+	jQuery.noConflict();
     if(checkCookie(window.cookieName) != window.cookieValue){
         createDiv(); 
     }
+    jQuery('#my_mo_modal').modal();
 }
 
 function removeMe(){

@@ -145,24 +145,23 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
 
 
 <div id="my_mo_modal" style="top: 20%;" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
-                <h3>Important info</h3>
-              </div>
-              <div class="modal-body">
-<p>Dear User, <br><br>
-By clicking the “I accept” link below, you declare to accept the new defined policies.  Otherwise, you can still work with your account but note that it will be removed by the defined deadline and the FIWARE Lab providers will not be responsible for creating a copy of the data you stored on the FIWARE Lab.<br><br>
-<a href="http://terms.lab.fiware.org/accept"  target="_blank">I Accept</a><br><br>
-Thanks</p>
-              </div>
-              <div class="modal-footer">
-                <button data-dismiss="modal" type="button" class="btn btn-blue">Continue</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+        <h4>Important info</h4>
+      </div>
+      <div class="modal-body">
+        <p>Dear User, <br><br>
+        By clicking the <em>“I accept”</em> link below, you declare to accept the new defined policies.  Otherwise, you can still work with your account but note that it will be removed by the defined deadline and the FIWARE Lab providers will not be responsible for creating a copy of the data you stored on the FIWARE Lab.<br><br>
+        <a href="http://terms.lab.fiware.org/accept" class="btn btn-link" target="_blank">I Accept.</a>  Thanks</p>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" type="button" class="btn btn-default">Continue</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <?php get_footer(); ?> 

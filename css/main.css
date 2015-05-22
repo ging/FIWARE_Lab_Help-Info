@@ -1236,3 +1236,8 @@ section.tabbable{
   font-weight: bold;
 } 
 
+/*Modal*/
+
+#my_mo_modal{
+  top: 0 !important;
+}
