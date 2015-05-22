@@ -433,22 +433,22 @@ ul.navbar-nav > li {
 @font-face {
   font-family: "NeoTechRegular";
   font-style: normal;
-  src: url('../fonts/neotechstd/neotechstd-regular.eot');
-    src: url('../fonts/neotechstd/neotechstd-regular.eot') format('embedded-opentype'),
-         url('../fonts/neotechstd/neotechstd-regular.woff') format('woff'),
-         url('../fonts/neotechstd/neotechstd-regular.ttf') format('truetype'),
-         url('../fonts/neotechstd/neotechstd-regular.svg#NeoTechStdMedium') format('svg');
+  src: url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-regular.eot');
+    src: url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-regular.eot') format('embedded-opentype'),
+         url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-regular.woff') format('woff'),
+         url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-regular.ttf') format('truetype'),
+         url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-regular.svg#NeoTechStdMedium') format('svg');
 }
 
 
 @font-face {
   font-family: "NeoTechMedium";
   font-style: normal;
-  src: url('../fonts/neotechstd/neotechstd-medium.eot');
-    src: url('../fonts/neotechstd/neotechstd-medium.eot') format('embedded-opentype'),
-         url('../fonts/neotechstd/neotechstd-medium.woff') format('woff'),
-         url('../fonts/neotechstd/neotechstd-medium.ttf') format('truetype'),
-         url('../fonts/neotechstd/neotechstd-medium.svg#NeoTechStdMedium') format('svg');
+  src: url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-medium.eot');
+    src: url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-medium.eot') format('embedded-opentype'),
+         url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-medium.woff') format('woff'),
+         url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-medium.ttf') format('truetype'),
+         url('http://help.lab.fi-ware.org/wp-content/themes/bootstrap-basic/fonts/neotechstd/neotechstd-medium.svg#NeoTechStdMedium') format('svg');
 }
 
 /************* header *******/
