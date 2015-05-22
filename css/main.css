@@ -693,7 +693,7 @@ footer.footer-main {
 
 
 body > .wrap {
-  padding: 34px 15px 30px;
+  padding: 60px 15px 30px;
   max-width: 1200px;
 }
 
@@ -1117,7 +1117,7 @@ section.tabbable{
 
 @media (min-width: 783px) and (max-width: 991px) {
   .wrap{
-    padding-top: 34px !important;
+    padding-top: 57px !important;
   }
 }
 
