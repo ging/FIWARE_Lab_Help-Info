@@ -21,7 +21,17 @@
 
     <!--wordpress head-->
     <?php wp_head(); ?>
+    <script>
+      var confirm_help_box = function () {
+      var r = confirm("The communications sent to the FIWARE Lab support list are public and they generate public tickets. Please avoid sending private info unless you are happy to see it publicly available.");
+        if (r == true) {
+          window.location = "mailto:fiware-lab-help@lists.fi-ware.org?Subject=FI-Lab Assistance";
+        } 
+      }
+    </script>
   </head>
+
+
   <body <?php body_class(); ?>>
     <!--[if lt IE 8]>
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
