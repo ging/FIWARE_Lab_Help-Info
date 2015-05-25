@@ -1,6 +1,8 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+		<h3 class="entry-title">
+		  <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
+		</h3>
 
 		<?php if ('post' == get_post_type()) { ?> 
 		<div class="entry-meta">

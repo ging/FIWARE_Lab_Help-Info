@@ -19,10 +19,11 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
 
         <div class="tabbable">
           <header>
-            <div class="intro">
-            <!--<h4 data-toggle="tooltip" data-placement="right" title="Click on the links to see the FI-WARE video tutorials"><i class="fa fa-question-circle"></i></h4>-->
+            <!--<div class="intro">
             <h4 class="h4">Click on the links to see the FI-WARE video tutorials</h4>
-            </div>
+            </div>-->
+            <h4 id="my_mo_tooltip" data-toggle="tooltip" data-placement="left" title="Click on the links to see the FI-WARE video tutorials"><i class="fa fa-question-circle"></i></h4>
+
             <ul class="nav nav-tabs">
               <li class="active"><a href="#cloud" data-toggle="tab">Cloud</a></li>
               <li><a href="#store" data-toggle="tab">Store</a></li>
@@ -152,9 +153,13 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
         <h4>Important info</h4>
       </div>
       <div class="modal-body">
-        <p>Dear User, <br><br>
-        By clicking the <em>“I accept”</em> link below, you declare to accept the new defined policies.  Otherwise, you can still work with your account but note that it will be removed by the defined deadline and the FIWARE Lab providers will not be responsible for creating a copy of the data you stored on the FIWARE Lab.<br><br>
-        <a href="http://terms.lab.fiware.org/accept" class="btn btn-link" target="_blank">I Accept.</a>  Thanks</p>
+        <p>
+          Dear User, <br><br>
+          By clicking the <em>“I accept”</em> link below, you declare to accept the new defined policies.  Otherwise, you can still work with your account but note that it will be removed by the defined deadline and the FIWARE Lab providers will not be responsible for creating a copy of the data you stored on the FIWARE Lab. <a href="http://terms.lab.fiware.org/accept" class="btn btn-link" target="_blank">I Accept.</a></p>
+        <p>
+          Thanks.
+        </p>
+
       </div>
       <div class="modal-footer">
         <button data-dismiss="modal" type="button" class="btn btn-default">Continue</button>

@@ -693,13 +693,13 @@ footer.footer-main {
 
 
 body > .wrap {
-  padding: 34px 15px 30px;
+  padding: 60px 15px 30px;
   max-width: 1200px;
 }
 
 @media (max-width: 970px) {
   body > .wrap {
-    padding: 10px 15px 30px; 
+    padding: 50px 15px 30px; 
   }
 }
 
@@ -788,9 +788,8 @@ margin-bottom: 0px !important;
 }
 
 #main-column .post {
-  border-bottom: 1px solid #CCC !important;
   padding: 0 0px 10px 0px !important;
-  margin-bottom: 13px !important;
+  margin-bottom: 25px !important;
 }
 #main-column .post h2 a:hover {
   text-decoration: none;
@@ -868,28 +867,24 @@ div.help{
 }
 .help-i-h{
   background-image: url("images/help.png");
-  background-position-y: -1px;
-  background-position-x: 5px;
+  background-position: 5px -1px;
   background-size: 20px 20px;
 }
 .help-i-g{
   background-image: url("images/ges.png");
   background-size: 23px 23px;
-  background-position-y: -1px;
-  background-position-x: 4px;
+  background-position: 4px -1px;
   margin-top: -2px;
 }
 .help-i-n{
   background-image: url("images/fi-ops.png");
-  background-position-y: -2px;
-  background-position-x: 4px;
+  background-position: 4px -2px;
   background-size: 23px 22px;
 }
 .help-i-i{
   background-image: url("images/more-info.png");
   background-size: 20px 20px;
-  background-position-y: -1px;
-  background-position-x: 5px;
+  background-position: 5px -1px;
 }
 
 
@@ -1081,11 +1076,11 @@ section.tabbable{
 }
 
 .tabbable h4{
-  color: #5B5C5C;
-  text-align: right;
-  width: auto;
-  margin: 0 0 0 0;
-  font-family: "NeoTechRegular";
+  bottom: -1px;
+  color: #c9c9c9;
+  float: right;
+  position: absolute;
+  right: 0;
 }
 
 .carousel-indicators{
@@ -1177,7 +1172,7 @@ section.tabbable{
 .posted-on a{
   background-color: #00D3DE;
   color: #FFF !important;
-  padding: 8px 19px;
+  padding: 10px 19px 6px;
   position: absolute;
   left: 15px;
   width: 86px;
@@ -1197,6 +1192,17 @@ section.tabbable{
   margin-left: 95px;
   border-bottom: 1px solid #A9A9A9;
   padding-bottom: 7px;
+  text-transform: uppercase;
+}
+.entry-title a,
+.entry-date{
+  font-family: "NeoTechRegular";
+}
+time.entry-date.published {
+  width: 50px;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -1240,4 +1246,16 @@ section.tabbable{
 
 #my_mo_modal{
   top: 0 !important;
+}
+#my_mo_modal .btn-link{
+  padding: 0;
+}
+
+/*Posts*/
+
+time.entry-date.published {
+  width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
 }

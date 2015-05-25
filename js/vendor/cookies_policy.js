@@ -57,6 +57,8 @@ window.onload = function(){
         createDiv(); 
     }
     jQuery('#my_mo_modal').modal();
+
+    jQuery('#my_mo_tooltip').tooltip();
 }
 
 function removeMe(){
