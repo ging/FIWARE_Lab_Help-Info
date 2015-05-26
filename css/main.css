@@ -693,15 +693,10 @@ footer.footer-main {
 
 
 body > .wrap {
-  padding: 60px 15px 30px;
+  padding: 24px 15px 30px;
   max-width: 1200px;
 }
 
-@media (max-width: 970px) {
-  body > .wrap {
-    padding: 50px 15px 30px; 
-  }
-}
 
 
 /* aside */
@@ -811,6 +806,48 @@ div.help:hover {
   background-color: rgba(56, 56, 56, 0.19);
 }
 
+.panel-social{
+  border: none;
+  box-shadow: none;
+}
+.panel-social .panel-heading{
+  background-color: #FFF;
+  border: none;
+}
+.panel-social .btn-default{
+    display: inline-block !important;
+    height: 31px;
+    line-height: 1;
+    color: #FFF;
+    border-radius: 50%;
+    background: #B7B7B7;
+    overflow: hidden;
+    transition: color .3s;
+    padding: 2px 2px 2px 2px;
+    font-size: 100%;
+    text-decoration: none;
+    font-weight: normal;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+.panel-social .btn-default:hover,
+.panel-social .btn-default:hover i{
+  background-color: #666;
+  border-color: #666;
+}
+
+.btn-group>.btn:last-child {
+  margin-right: 0;
+}
+
+.panel-social .btn-default i{
+  float: none;
+  padding: 0;
+  margin: 0;
+  color: #FFF;
+  background-color: #B7B7B7;
+}
 /* aside end */
 
 
@@ -940,6 +977,9 @@ div.help{
   margin: -3px 6px 0 6px;
   width: 78px;
   border-bottom: 3px solid #CCC;
+}
+.tabbable header li:first-child{
+  margin-left: 0px;
 }
 .tabbable header li:hover{
   border-bottom: 3px solid #5B5B5F;
@@ -1090,6 +1130,12 @@ section.tabbable{
   margin-top: 13px;
   font-size: 32px;
 }
+#main-column{
+  margin-top: 5px;
+}
+.single-post #main-column{
+  margin-top: 23px;
+}
 @media (max-width: 422px) {
   .tabbable header li {
     display: block;
@@ -1113,12 +1159,6 @@ section.tabbable{
   }
 }
 
-@media (min-width: 783px) and (max-width: 991px) {
-  .wrap{
-    padding-top: 34px !important;
-  }
-}
-
 @media (max-width: 991px) {
   #blog{
     margin-bottom: 42px;
@@ -1126,6 +1166,19 @@ section.tabbable{
   .request button {
     margin-bottom: 40px;
     margin-top: 20px;
+    font-size: 14px;
+  }
+  .panel-social{
+    width: 100% !important;
+  }
+  aside{
+    margin-top: 0;
+  }
+  #main-column{
+    margin-top: 0;
+  }
+  .panel-social{
+    margin-bottom: 40px;
   }
   .tabbable h4{
     text-align: center;
@@ -1197,6 +1250,9 @@ section.tabbable{
   padding-bottom: 7px;
   text-transform: uppercase;
 }
+.entry-title a:hover {
+  text-decoration: none;
+}
 .entry-title a,
 .entry-date{
   font-family: "NeoTechRegular";
@@ -1206,6 +1262,14 @@ time.entry-date.published {
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 15px;
+  font-style: normal;
+}
+time.entry-date.published span{
+  display: block;
+}
+time.entry-date.published span:last-child{
+  font-size: 19px;
 }
 
 
