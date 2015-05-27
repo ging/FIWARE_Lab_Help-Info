@@ -853,6 +853,9 @@ div.help:hover {
   color: #FFF;
   background-color: #B7B7B7;
 }
+.btn-social .tooltip{
+  font-size: 12px;
+}
 /* aside end */
 
 
@@ -1148,8 +1151,18 @@ section.tabbable{
     margin-top: 6px;
     margin-left: 0;
   }
+  .tabbable h4 {
+    position: relative;
+    right: 0;
+    line-height: 0;
+    margin-bottom: 0px !important;
+    margin-top: 0;
+  }
   .tabbable header li:first-child {
     margin-top: 6px;
+  }
+  .tabbable header ul.nav {
+    margin-top: 0 !important;
   }
 }
 
@@ -1194,6 +1207,9 @@ section.tabbable{
 @media (max-width: 480px) {
   .video iframe{
     height: 220px;
+  }
+  .twitter iframe{
+    height: 375px;
   }
   #main-column, #sidebar-right{
     padding-left: 0 !important;
