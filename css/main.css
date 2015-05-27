@@ -693,6 +693,11 @@ footer.footer-main {
 
 
 body > .wrap {
+  padding: 60px 15px 30px;
+  max-width: 1200px;
+}
+
+body.admin-bar > .wrap {
   padding: 24px 15px 30px;
   max-width: 1200px;
 }
