@@ -10,7 +10,7 @@
 			
 			
 			<footer class="footer-main">
-      <div class="container-fluid wrap">
+      <div class="container-fluid">
         <div class="footer-content">
 
           <div class="cred">
