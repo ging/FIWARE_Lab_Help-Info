@@ -1,42 +1,68 @@
-<?php
-/**
- * Template for dispalying single post (read full post page).
- * 
- * @package bootstrap-basic
- */
+<?php get_header(); ?>
+			
+			<div id="content" class="clearfix row">
+			
+				<div id="main" class="span10 clearfix" role="main">
 
-get_header();
-
-/**
- * determine main column size from actived sidebar
- */
-$main_column_size = bootstrapBasicGetMainColumnSize();
-?> 
-<?php get_sidebar('left'); ?> 
-				<div class="col-md-<?php echo $main_column_size; ?> content-area" id="main-column">
-					<main id="main" class="site-main" role="main">
-						<?php 
-						while (have_posts()) {
-							the_post();
-
-							get_template_part('content', get_post_format());
-
-							echo "\n\n";
+					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+					
+					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+						
+						<header>
+						
+							<?php the_post_thumbnail( 'wpbs-featured' ); ?>
 							
-							bootstrapBasicPagination();
-
-							echo "\n\n";
+							<div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
 							
-							// If comments are open or we have at least one comment, load up the comment template
-							if (comments_open() || '0' != get_comments_number()) {
-								comments_template();
-							}
+							<p class="meta"><?php _e("Posted", "bonestheme"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php the_date(); ?></time> <?php _e("by", "bonestheme"); ?> <?php the_author_posts_link(); ?>.</p>
+						
+						</header> <!-- end article header -->
+					
+						<section class="post_content clearfix" itemprop="articleBody">
+							<?php the_content(); ?>
+							
+							<?php wp_link_pages(); ?>
+					
+						</section> <!-- end article section -->
+						
+						<footer>
+			
+							<?php the_tags('<p class="tags"><span class="tags-title">' . __("Tags","bonestheme") . ':</span> ', ' ', '</p>'); ?>
+							
+							<?php 
+							// only show edit button if user has permission to edit posts
+							if( $user_level > 0 ) { 
+							?>
+							<a href="<?php echo get_edit_post_link(); ?>" class="btn btn-secundary edit-post"><i class="icon-pencil icon-white"></i> <?php _e("Edit post","bonestheme"); ?></a>
+							<?php } ?>
+							
+						</footer> <!-- end article footer -->
+					
+					</article> <!-- end article -->
+					
+					<?php comments_template('',true); ?>
+					
+					<?php endwhile; ?>			
+					
+					<?php else : ?>
+					
+					<article id="post-not-found">
+					    <header>
+					    	<h1><?php _e("Not Found", "bonestheme"); ?></h1>
+					    </header>
+					    <section class="post_content">
+					    	<p><?php _e("Sorry, but the requested resource was not found on this site.", "bonestheme"); ?></p>
+					    </section>
+					    <footer>
+					    </footer>
+					</article>
+					
+					<?php endif; ?>
+			
+				</div> <!-- end #main -->
+    
+				
+    
+			</div> <!-- end #content -->
 
-							echo "\n\n";
-
-						} //endwhile;
-						?> 
-					</main>
-				</div>
-<?php get_sidebar('right'); ?> 
-<?php get_footer(); ?> 
+<?php get_footer(); ?>

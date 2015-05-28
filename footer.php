@@ -1,34 +1,34 @@
-<?php
-/**
- * The theme footer
- * 
- * @package bootstrap-basic
- */
-?>
+<footer>
+  <div class="container">
+      2014 &copy; 
+    <a href="http://www.fiware.org/">
+      FIWARE.
+    </a>
+      The use of FIWARE Lab services is subject to the acceptance of the
+    <a href="https://forge.fiware.org/plugins/mediawiki/wiki/fiware/index.php/FIWARE_LAB_Terms_and_Conditions" target="_blank">
+      Terms and Conditions
+    </a>  
+    , 
+    <a href="http://forge.fi-ware.org/plugins/mediawiki/wiki/fiware/index.php/FI-LAB_Personal_Data_Protection_Policy" target="_blank">
+      Personal Data Protection Policy
+    </a>
+      and 
+    <a href="http://forge.fi-ware.org/plugins/mediawiki/wiki/fiware/index.php/Cookies_Policy_FIWARE_Lab" target="_blank">
+      Cookies Policy
+    </a>
+  </div>
+</footer>
 
-			</div><!--.site-content-->
-			
-			
-			<footer class="footer-main">
-      <div class="container-fluid">
-        <div class="footer-content">
+<!-- end footer -->
+    
+        
+    <!--[if lt IE 7 ]>
+        <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+        <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+    <![endif]-->
+    
+    <?php wp_footer(); // js scripts are inserted using this function ?>
 
-          <div class="cred">
-            2015 &copy; 
-            <a href="http://www.fiware.org/">FIWARE</a>.
+  </body>
 
-            The use of FIWARE Lab services is subject to the acceptance of the
-            <a href="http://wiki.fiware.org/FIWARE_LAB_Terms_and_Conditions" target="a_blank">Terms and Conditions</a>,
-
-            <a href="http://wiki.fiware.org/FIWARE_Lab_Personal_Data_Protection_Policy" target="a_blank">Personal Data Protection Policy</a>
-            and 
-            <a href="http://wiki.fiware.org/Cookies_Policy_FIWARE_Lab" target="a_blank">Cookies Policy</a>.
-          </div>
-        </div>
-      </div>
-    </footer>
-		
-		<!--wordpress footer-->
-		<?php wp_footer(); ?> 
-	</body>
 </html>

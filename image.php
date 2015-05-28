@@ -1,93 +1,139 @@
 <?php
 /**
- * The template for displaying image attachments.
- * 
- * @package bootstrap-basic
- */
+ * The WordPress template hierarchy first checks for any
+ * MIME-types and then looks for the attachment.php file.
+ *
+ * @link codex.wordpress.org/Template_Hierarchy#Attachment_display 
+ */ 
 
-get_header();
-?> 
-				<div class="col-md-12 content-area image-attachment" id="main-column">
-					<main id="main" class="site-main" role="main">
-						<?php 
-						while (have_posts()) {
-							the_post(); 
-						?> 
+get_header(); ?>
+			
+			<div id="content" class="clearfix row">
+			
+				<div id="main" class="span8 clearfix" role="main">
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-							<header class="entry-header">
-								<?php the_title('<h1 class="entry-title">', '</h1>'); ?> 
-
-								<div class="entry-meta">
-									<?php
-										$metadata = wp_get_attachment_metadata();
-										printf(__('Published <span class="entry-date"><time class="entry-date" datetime="%1$s">%2$s</time></span> at <a href="%3$s" title="Link to full-size image">%4$s &times; %5$s</a> in <a href="%6$s" title="Return to %7$s" rel="gallery">%8$s</a>', 'bootstrap-baisc'),
-											esc_attr(get_the_date('c')),
-											esc_html(get_the_date()),
-											esc_url(wp_get_attachment_url()),
-											$metadata['width'],
-											$metadata['height'],
-											esc_url(get_permalink($post->post_parent)),
-											esc_attr(strip_tags(get_the_title($post->post_parent))),
-											get_the_title($post->post_parent)
-										);
-
-										echo ' ';
-										bootstrapBasicEditPostLink();
-										//edit_post_link(__('Edit', 'bootstrap-baisc'), '<span class="edit-link">', '</span>');
-									?> 
-								</div><!-- .entry-meta -->
-
-								<ul role="navigation" id="image-navigation" class="image-navigation pager">
-									<li class="nav-previous previous"><?php previous_image_link(false, __('<span class="meta-nav">&larr;</span> Previous', 'bootstrap-baisc')); ?></li>
-									<li class="nav-next next"><?php next_image_link(false, __('Next <span class="meta-nav">&rarr;</span>', 'bootstrap-baisc')); ?></li>
-								</ul><!-- #image-navigation -->
-							</header><!-- .entry-header -->
-
-							<div class="entry-content">
-								<div class="entry-attachment">
-									<div class="attachment">
-										<?php bootstrapBasicTheAttachedImage(); ?> 
-									</div><!-- .attachment -->
-
-									<?php if (has_excerpt()) { ?> 
-									<div class="entry-caption">
-										<?php the_excerpt(); ?> 
-									</div><!-- .entry-caption -->
-									<?php } //endif; ?> 
-								</div><!-- .entry-attachment -->
-
-								<?php
-								the_content();
+					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+					
+					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+						
+						<header> 
+							
+							<div class="page-header"><h1 class="single-title" itemprop="headline"><a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment"><?php echo get_the_title($post->post_parent); ?></a> &raquo; <?php the_title(); ?></h1></div>
+							
+							<p class="meta"><?php _e("Posted", "bonestheme"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php the_date(); ?></time> <?php _e("by", "bonestheme"); ?> <?php the_author_posts_link(); ?>.</p>
+						
+						</header> <!-- end article header -->
+					
+						<section class="post_content clearfix" itemprop="articleBody">
+							
+							<!-- To display current image in the photo gallery -->
+							<div class="attachment-img">
+							      <a href="<?php echo wp_get_attachment_url($post->ID); ?>">
+							      							      
+							      <?php 
+							      	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' ); 
+							       
+								      if ($image) : ?>
+								          <img src="<?php echo $image[0]; ?>" alt="" />
+								      <?php endif; ?>
+							      
+							      </a>
+							</div>
+							
+							<!-- To display thumbnail of previous and next image in the photo gallery -->
+							<ul id="gallery-nav" class="clearfix">
+								<li class="next pull-left"><?php next_image_link() ?></li>
+								<li class="previous pull-right"><?php previous_image_link() ?></li>
+							</ul>
+							
+						</section> <!-- end article section -->
+						
+						<footer>
+			
+							<?php the_tags('<p class="tags"><span class="tags-title">' . __("Tags","bonestheme") . ':</span> ', ' ', '</p>'); ?>
+							
+						</footer> <!-- end article footer -->
+					
+					</article> <!-- end article -->
+					
+					<?php comments_template(); ?>
+					
+					<?php endwhile; ?>			
+					
+					<?php else : ?>
+					
+					<article id="post-not-found">
+					    <header>
+					    	<h1><?php _e("Not Found", "bonestheme"); ?></h1>
+					    </header>
+					    <section class="post_content">
+					    	<p><?php _e("Sorry, but the requested resource was not found on this site.", "bonestheme"); ?></p>
+					    </section>
+					    <footer>
+					    </footer>
+					</article>
+					
+					<?php endif; ?>
+			
+				</div> <!-- end #main -->
+				
+				<div id="sidebar1" class="sidebar" role="complementary">
+				
+					<?php if ( !empty($post->post_excerpt) ) { ?> 
+					<p class="alert alert-block success"><?php echo get_the_excerpt(); ?></p>
+					<?php } ?>
 								
-								/**
-								 * This wp_link_pages option adapt to use bootstrap pagination style.
-								 * The other part of this pager is in inc/template-tags.php function name bootstrapBasicLinkPagesLink() which is called by wp_link_pages_link filter.
-								 * 
-								 * NOPE! NO! DON'T! This function really does not works with WordPress image attachment page.
-								 * @todo Check again that WordPress already fix pages in image.php bug and re-enable it. (Last WP version checked but still not work is 3.7.1)
-								*/
-								/* wp_link_pages(array(
-									   'before' => '<div class="page-links">' . __('Pages:', 'bootstrap-basic') . ' <ul class="pagination">',
-									   'after'  => '</ul></div>',
-									   'separator' => ''
-								));*/
-								?> 
-							</div><!-- .entry-content -->
-
-							<?php bootstrapBasicEditPostLink(); ?> 
-						</article><!-- #post-## -->
-
-						<?php
-							// If comments are open or we have at least one comment, load up the comment template
-							if (comments_open() || '0' != get_comments_number()) {
-								comments_template();
-							}
-						?> 
-
-						<?php 
-						} //endwhile; // end of the loop. 
-						?> 
-					</main>
+					<!-- Using WordPress functions to retrieve the extracted EXIF information from database -->
+					<div class="well">
+					
+						<h3><?php _e("Image metadata","bonestheme"); ?></h3>
+					
+					   <?php
+					      $imgmeta = wp_get_attachment_metadata( $id );
+					
+					// Convert the shutter speed retrieve from database to fraction
+					      if ((1 / $imgmeta['image_meta']['shutter_speed']) > 1)
+					      {
+					         if ((number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1)) == 1.3
+					         or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 1.5
+					         or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 1.6
+					         or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 2.5){
+					            $pshutter = "1/" . number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1, '.', '') . " second";
+					         }
+					         else{
+					           $pshutter = "1/" . number_format((1 / $imgmeta['image_meta']['shutter_speed']), 0, '.', '') . " second";
+					         }
+					      }
+					      else{
+					         $pshutter = $imgmeta['image_meta']['shutter_speed'] . " seconds";
+					       }
+					
+					// Start to display EXIF and IPTC data of digital photograph
+					       if ( $imgmeta['image_meta']['created_timestamp'] ) { 
+					           echo __("Date Taken","bonestheme") . ": " . date("d-M-Y H:i:s", $imgmeta['image_meta']['created_timestamp'])."<br />"; }
+					       if ( $imgmeta['image_meta']['copyright'] ) { 
+					           echo __("Copyright","bonestheme") . ": " . $imgmeta['image_meta']['copyright']."<br />"; }
+					       if ( $imgmeta['image_meta']['credit'] ) { 
+					           echo __("Credit","bonestheme") . ": " . $imgmeta['image_meta']['credit']."<br />"; }
+					       if ( $imgmeta['image_meta']['title'] ) { 
+					           echo __("Title","bonestheme") . ": " . $imgmeta['image_meta']['title']."<br />"; }
+					       if ( $imgmeta['image_meta']['caption'] ) { 
+					           echo __("Caption","bonestheme") . ": " . $imgmeta['image_meta']['caption']."<br />"; }
+					       if ( $imgmeta['image_meta']['camera'] ) { 
+					           echo __("Camera","bonestheme") . ": " . $imgmeta['image_meta']['camera']."<br />"; }
+					       if ( $imgmeta['image_meta']['focal_length'] ) { 
+					           echo __("Focal Length","bonestheme") . ": " . $imgmeta['image_meta']['focal_length']."mm<br />"; }
+					       if ( $imgmeta['image_meta']['aperture'] ) { 
+					           echo __("Aperture","bonestheme") . ": f/" . $imgmeta['image_meta']['aperture']."<br />"; }
+					       if ( $imgmeta['image_meta']['iso'] ) { 
+					           echo __("ISO","bonestheme") . ": " . $imgmeta['image_meta']['iso']."<br />"; }
+					       if ( $pshutter ) { 
+					           echo __("Shutter Speed","bonestheme") . ": " . $pshutter . "<br />"; }
+					   ?>
+					</div>
+					
 				</div>
-<?php get_footer(); ?> 
+    
+			</div> <!-- end #content -->
+
+<?php get_footer(); ?>

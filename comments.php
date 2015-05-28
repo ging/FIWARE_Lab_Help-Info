@@ -1,137 +1,154 @@
 <?php
-/**
- * Template for displaying comments
- * 
- * @package bootstrap-basic
- */
+/*
+The comments page for Bones
+*/
 
+// Do not delete these lines
+  if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
+    die ('Please do not load this page directly. Thanks!');
 
-if (post_password_required()) {
-	return;
-}
+  if ( post_password_required() ) { ?>
+  	<div class="alert alert-info"><?php _e("This post is password protected. Enter the password to view comments.","bonestheme"); ?></div>
+  <?php
+    return;
+  }
 ?>
-<div id="comments" class="comments-area">
 
-	<?php // You can start editing here -- including this comment! ?>
+<!-- You can start editing here. -->
 
-	<?php if (have_comments()) { ?>
-		<h2 class="comments-title">
-			<?php
-			printf(_nx('One comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'bootstrap-basic'), number_format_i18n(get_comments_number()), '<span>' . get_the_title() . '</span>');
-			?> 
-		</h2>
+<?php if ( have_comments() ) : ?>
+	<?php if ( ! empty($comments_by_type['comment']) ) : ?>
+	<h5 id="comments"><?php comments_number('<span>' . __("No","bonestheme") . '</span> ' . __("Responses","bonestheme") . '', '<span>' . __("One","bonestheme") . '</span> ' . __("Response","bonestheme") . '', '<span>%</span> ' . __("Responses","bonestheme") );?> <?php _e("to","bonestheme"); ?> &#8220;<?php the_title(); ?>&#8221;</h5>
 
-		<?php if (get_comment_pages_count() > 1 && get_option('page_comments')) { // are there comments to navigate through  ?> 
-			<h3 class="screen-reader-text sr-only"><?php _e('Comment navigation', 'bootstrap-basic'); ?></h3>
-			<ul id="comment-nav-above" class="comment-navigation pager" role="navigation">
-				<li class="nav-previous previous"><?php previous_comments_link(__('&larr; Older Comments', 'bootstrap-basic')); ?></li>
-				<li class="nav-next next"><?php next_comments_link(__('Newer Comments &rarr;', 'bootstrap-basic')); ?></li>
-			</ul><!-- #comment-nav-above -->
-		<?php } // check for comment navigation  ?> 
-
-		<ul class="media-list">
-			<?php
-			/* Loop through and list the comments. Tell wp_list_comments()
-			 * to use bootstrapBasicComment() to format the comments.
-			 * If you want to override this in a child theme, then you can
-			 * define bootstrapBasicComment() and that will be used instead.
-			 * See bootstrapBasicComment() in inc/template-tags.php for more.
-			 */
-			wp_list_comments(array('avatar_size' => '64', 'callback' => 'bootstrapBasicComment'));
-			?>
-		</ul><!-- .comment-list -->
-
-		<?php if (get_comment_pages_count() > 1 && get_option('page_comments')) { // are there comments to navigate through  ?> 
-			<h3 class="screen-reader-text sr-only"><?php _e('Comment navigation', 'bootstrap-basic'); ?></h3>
-			<ul id="comment-nav-below" class="comment-navigation comment-navigation-below pager" role="navigation">
-				<li class="nav-previous previous"><?php previous_comments_link(__('&larr; Older Comments', 'bootstrap-basic')); ?></li>
-				<li class="nav-next next"><?php next_comments_link(__('Newer Comments &rarr;', 'bootstrap-basic')); ?></li>
-			</ul><!-- #comment-nav-below -->
-		<?php } // check for comment navigation  ?> 
-
-	<?php } // have_comments()  ?>
-
-	<?php
-	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if (!comments_open() && '0' != get_comments_number() && post_type_supports(get_post_type(), 'comments')) { ?> 
-		<p class="no-comments"><?php _e('Comments are closed.', 'bootstrap-basic'); ?></p>
-	<?php 
-	} //endif; 
-	?> 
-
-	<?php 
-	$req      = get_option('require_name_email');
-	$aria_req = ($req ? " aria-required='true'" : '');
-	$html5 = true;
+	<nav id="comment-nav">
+		<ul class="clearfix">
+	  		<li><?php previous_comments_link( __("Older comments","bonestheme") ) ?></li>
+	  		<li><?php next_comments_link( __("Newer comments","bonestheme") ) ?></li>
+	 	</ul>
+	</nav>
 	
-	// re-format comment allowed tags
-	$comment_allowedtags = allowed_tags();
-	$comment_allowedtags = str_replace(array("\r\n", "\r", "\n"), '', $comment_allowedtags);
-	$comment_allowedtags_array = explode('&gt; &lt;', $comment_allowedtags);
-	$formatted_comment_allowedtags = '';
-	foreach ($comment_allowedtags_array as $item) {
-		$formatted_comment_allowedtags .= '<code>';
-		
-		if ($comment_allowedtags_array[0] != $item) {
-			$formatted_comment_allowedtags .= '&lt;';
-		}
-		
-		$formatted_comment_allowedtags .= $item;
-		
-		if (end($comment_allowedtags_array) != $item) {
-			$formatted_comment_allowedtags .= '&gt;';
-		}
-		
-		$formatted_comment_allowedtags .= '</code> ';
-	}
-	$comment_allowed_tags = $formatted_comment_allowedtags;
-	unset($comment_allowedtags, $comment_allowedtags_array, $formatted_comment_allowedtags);
+	<ol class="commentlist">
+		<?php wp_list_comments('type=comment&callback=bones_comments'); ?>
+	</ol>
 	
-	ob_start();
-	comment_form(
-		array(
-			'fields' => array(
-				'author' => '<div class="form-group">' . 
-							'<label class="control-label col-md-2" for="author">' . __('Name', 'bootstrap-basic') . ($req ? ' <span class="required">*</span>' : '') . '</label> ' .
-							'<div class="col-md-10">' . 
-							'<input id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' class="form-control" />' . 
-							'</div>' . 
-							'</div>',
-				'email'  => '<div class="form-group">' . 
-							'<label class="control-label col-md-2" for="email">' . __('Email', 'bootstrap-basic') . ($req ? ' <span class="required">*</span>' : '') . '</label> ' .
-							'<div class="col-md-10">' . 
-							'<input id="email" name="email" ' . ($html5 ? 'type="email"' : 'type="text"') . ' value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' class="form-control" />' . 
-							'</div>' . 
-							'</div>',
-				'url'    => '<div class="form-group">' . 
-							'<label class="control-label col-md-2" for="url">' . __('Website', 'bootstrap-basic') . '</label> ' .
-							'<div class="col-md-10">' . 
-							'<input id="url" name="url" ' . ($html5 ? 'type="url"' : 'type="text"') . ' value="' . esc_attr($commenter['comment_author_url']) . '" size="30" class="form-control" />' . 
-							'</div>' . 
-							'</div>',
-			),
-			'comment_field' => '<div class="form-group">' . 
-							'<label class="control-label col-md-2" for="comment">' . _x('Comment', 'noun') . '</label> ' . 
-							'<div class="col-md-10">' . 
-							'<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="form-control"></textarea>' . 
-							'</div>' . 
-							'</div>',
-			'comment_notes_after' => '<p class="help-block">' . 
-							sprintf(__('You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s', 'bootstrap-basic'), $comment_allowed_tags) . 
-							'</p>'
-		)
-	); 
+	<?php endif; ?>
 	
-	/**
-	 * WordPress comment form does not support action/filter form and input submit elements. Rewrite these code when there is support available.
-	 * @todo Change form class modification to use WordPress hook action/filter when it's available.
-	 * @todo Change input submit class modification to use WordPress hook action/filter when it's available.
-	 */
-	$comment_form = str_replace('class="comment-form', 'class="comment-form form form-horizontal', ob_get_clean());
-	$comment_form = preg_replace('#(<input\b[^>]*\s)(type="submit")#i', '$1 type="submit" class="btn btn-primary"', $comment_form);
-	echo $comment_form;
+	<?php if ( ! empty($comments_by_type['pings']) ) : ?>
+		<h3 id="pings">Trackbacks/Pingbacks</h3>
+		
+		<ol class="pinglist">
+			<?php wp_list_comments('type=pings&callback=list_pings'); ?>
+		</ol>
+	<?php endif; ?>
 	
-	unset($comment_allowed_tags, $comment_form);
+	<nav id="comment-nav">
+		<ul class="clearfix">
+	  		<li><?php previous_comments_link( __("Older comments","bonestheme") ) ?></li>
+	  		<li><?php next_comments_link( __("Newer comments","bonestheme") ) ?></li>
+		</ul>
+	</nav>
+  
+	<?php else : // this is displayed if there are no comments so far ?>
+
+	<?php if ( comments_open() ) : ?>
+    	<!-- If comments are open, but there are no comments. -->
+
+	<?php else : // comments are closed 
 	?>
+	
+	<?php
+		$suppress_comments_message = of_get_option('suppress_comments_message');
 
-</div><!-- #comments -->
+		if (is_page() && $suppress_comments_message) :
+	?>
+			
+		<?php else : ?>
+		
+			<!-- If comments are closed. -->
+			<p class="alert alert-info"><?php _e("Comments are closed","bonestheme"); ?>.</p>
+			
+		<?php endif; ?>
+
+	<?php endif; ?>
+
+<?php endif; ?>
+
+
+<?php if ( comments_open() ) : ?>
+
+<section id="respond" class="respond-form">
+    <div class="respond">
+	    <div id="cancel-comment-reply">
+			<p class="small"><?php cancel_comment_reply_link( __("Cancel","bonestheme") ); ?></p>
+		</div>
+		<h3 id="comment-form-title"><?php comment_form_title( __("/// Leave a Reply","bonestheme"), __("Leave a Reply to","bonestheme") . ' %s' ); ?></h3>
+
+		<?php if ( get_option('comment_registration') && !is_user_logged_in() ) : ?>
+	  	<div class="help">
+	  		<p><?php _e("You must be","bonestheme"); ?> <a href="<?php echo wp_login_url( get_permalink() ); ?>"><?php _e("logged in","bonestheme"); ?></a> <?php _e("to post a comment","bonestheme"); ?>.</p>
+	  	</div>
+		<?php else : ?>
+
+		<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="form-vertical" id="commentform">
+
+		<?php if ( is_user_logged_in() ) : ?>
+
+		<p class="comments-logged-in-as"><?php _e("Logged in as","bonestheme"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account","bonestheme"); ?>"><?php _e("Log out","bonestheme"); ?> &raquo;</a></p>
+
+		<?php else : ?>
+		
+		<ul id="comment-form-elements" class="clearfix">
+			
+			<li class="reply">
+				<div class="control-group">
+				  <div class="input-prepend">
+				  	<span class="add-on"><i class="icon-user"></i></span><input type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" placeholder="<?php _e("Your Name","bonestheme"); ?>" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
+				  </div>
+			  	</div>
+			</li>
+			
+			<li  class="reply">
+				<div class="control-group">
+				  <div class="input-prepend">
+				  	<span class="add-on"><i class="icon-envelope"></i></span><input type="email" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("Your Email","bonestheme"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
+				  	<span class="help-inline">(<?php _e("will not be published","bonestheme"); ?>)</span>
+				  </div>
+			  	</div>
+			</li>
+			
+			<li class="reply">
+				<div class="control-group">
+				  <div class="input-prepend">
+				    <span class="add-on"><i class="icon-home"></i></span><input type="url" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Your Website","bonestheme"); ?>" tabindex="3" />
+				  </div>
+			  	</div>
+			</li>
+			
+		</ul>
+
+		<?php endif; ?>
+		
+		<div class="clearfix">
+			<div class="input">
+				<textarea name="comment" id="comment" class="span10" placeholder="<?php _e("Your Comment Here…","bonestheme"); ?>" tabindex="4"></textarea>
+			</div>
+		</div>
+		
+		<div class="form-actions">
+		  <input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e("Submit Comment","bonestheme"); ?>" />
+		  <?php comment_id_fields(); ?>
+		</div>
+		
+		<?php 
+			//comment_form();
+			do_action('comment_form()', $post->ID); 
+		
+		?>
+		
+		</form>
+		
+		<?php endif; // If registration required and not logged in ?>
+		</div>
+</section>
+
+<?php endif; // if you delete this the sky will fall on your head ?>

@@ -1,15 +1,42 @@
-<?php get_header(); ?> 
+<?php get_header(); ?>
+			
+			<div id="content" class="clearfix row">
+			
+				<div id="main" class="span12 clearfix" role="main">
 
-				<div class="col-md-12 content-area" id="main-column">
-					<main id="main" class="site-main" role="main">
-						<section class="error-404 not-found">
-							<header class="page-header">
-								<h3 class="page-title"><?php _e('Oops! That page can&rsquo;t be found.', 'bootstrap-basic'); ?></h3>
-							</header><!-- .page-header -->
+					<article id="post-not-found" class="clearfix">
+						
+						<header>
 
+							<div class="hero-unit">
 							
-						</section><!-- .error-404 -->
-					</main>
-				</div>
+								<h1>Epic 404 - Article Not Found</h1>
+								<p>This is embarassing. We can't find what you were looking for.</p>
+															
+							</div>
+													
+						</header> <!-- end article header -->
+					
+						<section class="post_content">
+							
+							<p>Whatever you were looking for was not found, but maybe try looking again or search using the form below.</p>
 
-<?php get_footer(); ?> 
+							<div class="row">
+								<div class="span12">
+									<?php get_search_form(); ?>
+								</div>
+							</div>
+					
+						</section> <!-- end article section -->
+						
+						<footer>
+							
+						</footer> <!-- end article footer -->
+					
+					</article> <!-- end article -->
+			
+				</div> <!-- end #main -->
+    
+			</div> <!-- end #content -->
+
+<?php get_footer(); ?>
