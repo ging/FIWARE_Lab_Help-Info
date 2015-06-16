@@ -53,15 +53,15 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
                   </ul>
 
                   <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="blueprints-t">
+                    <div role="tabpanel" class="tab-pane fade in active" id="blueprints-t">
                       <p>Blueprint Templates let you quickly create a template from which to build your application.</p>
                       <p>You can specify the software you need in the Tier Templates and easily deploy all the instances with one click.</p>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="instances-t">
+                    <div role="tabpanel" class="tab-pane fade" id="instances-t">
                       <p>Use the Cloud section to create virtual servers for your applications in FI-WARE.</p>
                       <p>This short video shows how to start a virtual server from an image and configure <acronym title="Internet protocol">IP</acronym>, security groups, and keys to access it.</p>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="object-storage-t">
+                    <div role="tabpanel" class="tab-pane fade" id="object-storage-t">
                       <p>The FI-WARE Object Storage facility is ideal for storing large static files.</p>
                       <p>You can manage your object store using the FI-WARE, and integrate your applications with it through the <acronym title="connecting digital media interfaces">CDMI</acronym> interface.</p>
                       <p>The FI-WARE Object Storage facility is ideal for storing large static files. You can manage your object store using the FI-WARE, and integrate your applications with it through the <acronym title="connecting digital media interfaces">CDMI</acronym> interface.</p>
